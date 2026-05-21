@@ -1,0 +1,12 @@
+build/
+archive/
+.vs/
+
+*.exe
+*.obj
+*.pdb
+*.ilk
+*.idb
+*.ipch
+*.suo
+*.user
