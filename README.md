@@ -17,6 +17,8 @@ patterns/
     prefix_sum.cpp
   3. sliding-window/
     max_sum_subarray_k.cpp
+  4. fast-slow-pointers/
+    linked_list_cycle.cpp
 scripts/
   compile.bat
 build/
@@ -47,6 +49,12 @@ Sliding window example:
 
 ```bat
 compile.bat "patterns\3. sliding-window\max_sum_subarray_k.cpp"
+```
+
+Fast and slow pointers example:
+
+```bat
+compile.bat "patterns\4. fast-slow-pointers\linked_list_cycle.cpp"
 ```
 
 To add new patterns, create a new folder inside `patterns/` and place each problem in its own `.cpp` file.
