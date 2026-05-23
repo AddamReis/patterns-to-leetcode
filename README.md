@@ -58,3 +58,6 @@ compile.bat "patterns\4. fast-slow-pointers\linked_list_cycle.cpp"
 ```
 
 To add new patterns, create a new folder inside `patterns/` and place each problem in its own `.cpp` file.
+
+<img width="883" height="580" alt="image" src="https://github.com/user-attachments/assets/78440e73-d98a-4c3c-a461-c053355be15f" />
+
