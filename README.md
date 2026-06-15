@@ -19,6 +19,8 @@ patterns/
     max_sum_subarray_k.cpp
   4. fast-slow-pointers/
     linked_list_cycle.cpp
+  5. linked-list-in-place-reversal/
+    reverse_linked_list.cpp
 scripts/
   compile.bat
 build/
@@ -55,6 +57,12 @@ Fast and slow pointers example:
 
 ```bat
 compile.bat "patterns\4. fast-slow-pointers\linked_list_cycle.cpp"
+```
+
+Linked list in-place reversal example:
+
+```bat
+compile.bat "patterns\5. linked-list-in-place-reversal\reverse_linked_list.cpp"
 ```
 
 To add new patterns, create a new folder inside `patterns/` and place each problem in its own `.cpp` file.
