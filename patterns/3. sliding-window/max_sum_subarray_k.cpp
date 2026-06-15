@@ -3,6 +3,11 @@
 
 using namespace std;
 
+// ** Commands ** //
+//cout = saída no terminal
+//<< = envia algo para o cout
+//endl = pula para a próxima linha
+
 vector<int> maxRevenueInKDays(const vector<int>& revenues, int k) {
     //validação para garantir que k seja um valor válido, ou seja, maior que zero e menor ou igual ao tamanho do array de receitas.
     if (k <= 0 || k > static_cast<int>(revenues.size())) {

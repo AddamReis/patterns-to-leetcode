@@ -3,6 +3,13 @@
 
 using namespace std;
 
+// ** Commands ** //
+//cout = saída no terminal
+//<< = envia algo para o cout
+//endl = pula para a próxima linha
+//.size() - Retorna o número de elementos em um vetor ou string.
+//.empty() - Verifica se um vetor ou string está vazio.
+
 int removeDuplicates(vector<int>& nums) {
     if (nums.empty()) {
         return 0;

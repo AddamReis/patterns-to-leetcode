@@ -3,6 +3,12 @@
 
 using namespace std;
 
+// ** Commands ** //
+//cout = saída no terminal
+//<< = envia algo para o cout
+//endl = pula para a próxima linha
+//.size() - Retorna o número de elementos em um vetor ou string.
+
 vector<int> buildPrefixSum(const vector<int>& expenses) {
     vector<int> prefix(expenses.size() + 1, 0); //Cria um vetor zerado (limpo) com uma posicao a mais.
 

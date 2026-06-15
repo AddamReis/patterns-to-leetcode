@@ -2,6 +2,11 @@
 
 using namespace std;
 
+// ** Commands ** //
+//cout = saída no terminal
+//<< = envia algo para o cout
+//endl = pula para a próxima linha
+
 struct ListNode {
     int value;
     ListNode* next;

@@ -3,6 +3,12 @@
 
 using namespace std;
 
+// ** Commands ** //
+//cout = saída no terminal
+//<< = envia algo para o cout
+//endl = pula para a próxima linha
+//.size() - Retorna o número de elementos em um vetor ou string.
+
 vector<int> twoSum(vector<int>& numbers, int target) {
     int left = 0;
     int right = static_cast<int>(numbers.size()) - 1;
@@ -58,7 +64,7 @@ int main() {
     vector<int> result = twoSum(numbers, target);
 
     cout << "Two Sum II: ";
-    for (int index : result) {
+    for (int index : result) { //foreach do c++
         cout << index << " ";
     }
     cout << endl;

@@ -21,6 +21,8 @@ patterns/
     linked_list_cycle.cpp
   5. linked-list-in-place-reversal/
     reverse_linked_list.cpp
+  6. monotonic-stack/
+    daily_temperatures.cpp
 scripts/
   compile.bat
 build/
@@ -63,6 +65,12 @@ Linked list in-place reversal example:
 
 ```bat
 compile.bat "patterns\5. linked-list-in-place-reversal\reverse_linked_list.cpp"
+```
+
+Monotonic stack example:
+
+```bat
+compile.bat "patterns\6. monotonic-stack\daily_temperatures.cpp"
 ```
 
 To add new patterns, create a new folder inside `patterns/` and place each problem in its own `.cpp` file.
