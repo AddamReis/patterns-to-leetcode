@@ -3,9 +3,13 @@
 using namespace std;
 
 // ** Commands ** //
-//cout = saída no terminal
-//<< = envia algo para o cout
-//endl = pula para a próxima linha
+// cout = prints text or values in the terminal.
+// << = sends data to cout.
+// endl = moves the output to the next line.
+
+// ** Dictionary ** //
+//chain - a sequence of events where each event points to the next one. | "Corrente"
+//head - the first node in a linked list.
 
 struct ListNode {
     int value;
@@ -22,8 +26,8 @@ bool hasCycle(ListNode* head) {
     ListNode* fast = head;
 
     while (fast != nullptr && fast->next != nullptr) {
-        slow = slow->next;       // Anda 1 passo por vez.
-        fast = fast->next->next; // Anda 2 passos por vez.
+        slow = slow->next;       // Moves 1 step at a time.
+        fast = fast->next->next; // Moves 2 steps at a time.
 
         if (slow == fast) {
             return true;
@@ -34,33 +38,33 @@ bool hasCycle(ListNode* head) {
 }
 
 /*
-                            *Enunciado*
-                ## Detectar Ciclo em uma Lista Ligada ##
+                            *Problem Statement*
+                ## Detect a Cycle in a Linked List ##
 
-Voce trabalha em um sistema que processa uma sequencia de eventos encadeados.
-Cada evento aponta para o proximo evento da fila.
+You work on a system that processes a chain of events.
+Each event points to the next event in the queue.
 
-Por causa de uma falha de integracao, pode acontecer de um evento apontar para
-um evento anterior, criando um ciclo infinito.
+Because of an integration bug, one event can point to a previous event,
+creating an infinite cycle.
 
-Dada a cabeca de uma linked list, verifique se existe um ciclo.
+Given the head of a linked list, check if there is a cycle.
 
-Exemplo com ciclo:
+Example with cycle:
 1 -> 2 -> 3 -> 4
      ^         |
      |_________|
 
-Resposta esperada:
+Expected answer:
 true
 
-Como a estrutura pode ter um ciclo, nao podemos apenas percorrer ate encontrar
-nullptr. Usamos Fast & Slow Pointers:
+Because the structure can have a cycle, we cannot only walk until we find
+nullptr. We use Fast & Slow Pointers:
 
-slow anda 1 passo por vez.
-fast anda 2 passos por vez.
+slow moves 1 step at a time.
+fast moves 2 steps at a time.
 
-Se existir ciclo, fast eventualmente alcanca slow.
-Se nao existir ciclo, fast chega em nullptr.
+If there is a cycle, fast eventually meets slow.
+If there is no cycle, fast reaches nullptr.
 */
 
 int main() {
@@ -72,11 +76,11 @@ int main() {
     first->next = second;
     second->next = third;
     third->next = fourth;
-    fourth->next = second; // Cria um ciclo voltando para o node 2.
+    fourth->next = second; // Creates a cycle back to node 2.
 
     bool result = hasCycle(first);
 
-    cout << "Fast & Slow Pointers - Lista possui ciclo: ";
+    cout << "Fast & Slow Pointers - List has cycle: ";
     cout << (result ? "true" : "false") << endl;
 
     fourth->next = nullptr;

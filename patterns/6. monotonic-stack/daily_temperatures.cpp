@@ -5,33 +5,36 @@
 using namespace std;
 
 // ** Commands ** //
-//cout = saída no terminal
-//<< = envia algo para o cout
-//endl = pula para a próxima linha
-//.empty() - Verifica se a pilha está vazia.
+// cout = prints text or values in the terminal.
+// << = sends data to cout.
+// endl = moves the output to the next line.
+// .empty() = checks if the stack is empty.
 
-//.push() - Adiciona um elemento no topo da pilha.
-//.top() - Retorna o elemento do topo da pilha sem removê-lo.
-//.pop() - Remove o elemento do topo da pilha.
+// .push() = adds an element to the top of the stack.
+// .top() = returns the top element of the stack without removing it.
+// .pop() = removes the top element of the stack.
 
-//vector<int> - array
-//stack<int> - pilha (stack)
+// vector<int> = dynamic array.
+// stack<int> = stack data structure. | "Pilha"
+
+// ** Dictionary ** //
+// Monotonic Stack - a stack that maintains its elements in a specific order (increasing or decreasing).
 
 vector<int> dailyTemperatures(const vector<int>& temperatures) {
     vector<int> answer(temperatures.size(), 0);
     stack<int> pendingDays;
 
     for (int currentDay = 0; currentDay < static_cast<int>(temperatures.size()); ++currentDay) {
-        //enquanto a pilha nao estiver vazia e a temperatura atual for maior que a temperatura do topo da pilha, encontramos a resposta para o dia do topo da pilha.
+        // While the stack is not empty and the current temperature is higher than the temperature on top of the stack, we found the answer for that previous day.
         while (!pendingDays.empty() && temperatures[currentDay] > temperatures[pendingDays.top()]) { 
-            int previousDay = pendingDays.top(); //pegamos o indice do dia anterior que ainda nao encontrou uma temperatura maior.
-            pendingDays.pop();                   //removemos esse dia da pilha, pois agora encontramos a resposta para ele.
-            
-            //calculamos quantos dias se passaram entre o dia anterior e o dia atual, que é a resposta para o dia anterior.
+            int previousDay = pendingDays.top(); // Gets the index of the previous day that was still waiting for a warmer day.
+            pendingDays.pop();                   // Removes this day from the stack because we found its answer.
+
+            // Calculates how many days passed between the previous day and the current day.
             answer[previousDay] = currentDay - previousDay; 
         }
 
-        // Guarda o indice do dia atual enquanto ainda nao encontramos um dia mais quente.
+        // Stores the current day index while we still do not have a warmer future day.
         pendingDays.push(currentDay);
     }
 
@@ -47,31 +50,30 @@ void printVector(const vector<int>& values) {
 }
 
 /*
-                            *Enunciado*
-                ## Proxima Temperatura Mais Quente ##
+                            *Problem Statement*
+                ## Next Warmer Temperature ##
 
-Voce trabalha em um sistema de previsao do tempo. Cada posicao do array
-temperatures representa a temperatura prevista para um dia.
+You work on a weather forecast system. Each position in the temperatures array
+represents the forecast temperature for one day.
 
-Dado um array temperatures, retorne um novo array answer onde answer[i] indica
-quantos dias e preciso esperar depois do dia i para encontrar uma temperatura
-maior.
+Given an array temperatures, return a new array answer where answer[i] shows
+how many days you need to wait after day i to find a higher temperature.
 
-Se nao existir um dia futuro com temperatura maior, answer[i] deve ser 0.
+If there is no future day with a higher temperature, answer[i] must be 0.
 
-Exemplo:
+Example:
 temperatures = {73, 74, 75, 71, 69, 72, 76, 73}
 
-Resposta esperada:
+Expected answer:
 {1, 1, 4, 2, 1, 1, 0, 0}
 
-Para resolver, usamos uma Monotonic Stack.
+To solve this, we use a Monotonic Stack.
 
-A pilha guarda indices de dias que ainda nao encontraram uma temperatura maior.
-Enquanto a temperatura atual for maior que a temperatura do topo da pilha,
-encontramos a resposta daquele dia anterior.
+The stack stores indexes of days that still did not find a warmer day.
+While the current temperature is higher than the temperature on top of the
+stack, we found the answer for that previous day.
 
-Cada indice entra e sai da pilha no maximo uma vez, entao a solucao e O(n).
+Each index enters and leaves the stack at most once, so the solution is O(n).
 */
 
 int main() {
@@ -79,10 +81,10 @@ int main() {
 
     vector<int> answer = dailyTemperatures(temperatures);
 
-    cout << "Temperaturas: ";
+    cout << "Temperatures: ";
     printVector(temperatures);
 
-    cout << "Dias ate uma temperatura maior: ";
+    cout << "Days until a warmer temperature: ";
     printVector(answer);
 
     return 0;

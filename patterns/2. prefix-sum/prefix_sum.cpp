@@ -4,50 +4,55 @@
 using namespace std;
 
 // ** Commands ** //
-//cout = saída no terminal
-//<< = envia algo para o cout
-//endl = pula para a próxima linha
-//.size() - Retorna o número de elementos em um vetor ou string.
+// cout = prints text or values in the terminal.
+// << = sends data to cout.
+// endl = moves the output to the next line.
+// .size() = returns the number of elements in a vector or string.
+
+// ** Dictionary ** //
+// accumulated - total sum of values up to a certain point.
 
 vector<int> buildPrefixSum(const vector<int>& expenses) {
-    vector<int> prefix(expenses.size() + 1, 0); //Cria um vetor zerado (limpo) com uma posicao a mais.
+    vector<int> prefix(expenses.size() + 1, 0); // Creates a zero-filled vector with one extra position.
 
     for (int i = 0; i < static_cast<int>(expenses.size()); ++i) { 
-        // prefix[i + 1] garante que a posição zero se mantenha zerada, e o valor acumulado começa a ser preenchido a partir da posição 1.
+        // prefix[i + 1] keeps position zero as 0 and starts the accumulated values at position 1.
         prefix[i + 1] = prefix[i] + expenses[i]; 
     }
     return prefix;
 }
 
 int rangeSum(const vector<int>& prefix, int left, int right) {
-    // Soma de nums[left..right]:
-    // removemos do acumulado ate right tudo que veio antes de left.
+    // Sum of nums[left..right]:
+    // remove from the accumulated value everything that came before left.
     return prefix[right + 1] - prefix[left];
 }
 
 /*
-                            *Enunciado*
-                ## Análise de Gastos por Período ##
-Você trabalha em um sistema financeiro que registra os gastos diários de um usuário. 
-Cada posição do array representa o total gasto em um dia.
+                            *Problem Statement*
+                ## Expense Analysis by Period ##
+You work on a finance system that stores a user's daily expenses.
+Each position in the array represents the total spent in one day.
 
-Dado um array expenses, onde expenses[i] representa o gasto no dia i, 
-implemente uma estrutura que permita responder rapidamente qual foi o total gasto entre dois dias startDay e endDay, inclusive.
+Given an array expenses, where expenses[i] represents the spending on day i,
+implement a structure that can quickly answer the total spent between two days:
+startDay and endDay, inclusive.
 
-Como o sistema pode receber muitas consultas para o mesmo histórico de gastos, 
-sua solução deve fazer um pré-processamento inicial e depois responder cada consulta em O(1).
+Because the system can receive many queries for the same expense history,
+your solution must do one initial pre-processing step and then answer each
+query in O(1).
 */
 
 int main() {
     vector<int> expenses = {120, 80, 45, 200, 60, 30, 90};
 
-    vector<int> prefix = buildPrefixSum(expenses); // Primeiro pre-processamos o array uma vez.
+    vector<int> prefix = buildPrefixSum(expenses); // First, we pre-process the array once.
 
-    //parametros para indicar a posição inicial (Dia 1 - left) e a final (Dia 3 - right) do intervalo que queremos somar.
+    // Parameters that indicate the start day (left) and end day (right) of the range we want to sum.
     int left = 1;
     int right = 3;
 
-    // Depois cada consulta de intervalo pode ser respondida em O(1).
+    // After that, each range query can be answered in O(1).
     int sum = rangeSum(prefix, left, right);
 
     cout << "Prefix Sum: ";
@@ -55,6 +60,6 @@ int main() {
         cout << value << " ";
     }
     cout << endl;
-    cout << "Soma do intervalo [" << left << ", " << right << "]: " << sum << endl;
+    cout << "Range sum [" << left << ", " << right << "]: " << sum << endl;
     return 0;
 }

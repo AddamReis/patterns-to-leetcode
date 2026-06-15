@@ -3,9 +3,13 @@
 using namespace std;
 
 // ** Commands ** //
-//cout = saída no terminal
-//<< = envia algo para o cout
-//endl = pula para a próxima linha
+// cout = prints text or values in the terminal.
+// << = sends data to cout.
+// endl = moves the output to the next line.
+
+// ** Dictionary ** //
+//chain - a sequence of events where each event points to the next one. | "Corrente"
+//head - the first node in a linked list.
 
 struct ListNode {
     int value;
@@ -22,10 +26,10 @@ ListNode* reverseList(ListNode* head) {
     ListNode* current = head;
 
     while (current != nullptr) {
-        ListNode* nextNode = current->next; // Guarda o proximo node antes de mudar o ponteiro.
-        current->next = previous;          // Inverte o ponteiro do node atual.
-        previous = current;                // Avanca previous para o node atual.
-        current = nextNode;                // Continua percorrendo a lista original.
+        ListNode* nextNode = current->next; // Stores the next node before changing the pointer.
+        current->next = previous;          // Reverses the pointer of the current node.
+        previous = current;                // Moves previous to the current node.
+        current = nextNode;                // Continues walking through the original list.
     }
 
     return previous;
@@ -58,29 +62,30 @@ void deleteList(ListNode* head) {
 }
 
 /*
-                            *Enunciado*
-                ## Reverter uma Lista Ligada In-Place ##
+                            *Problem Statement*
+                ## Reverse a Linked List In-Place ##
 
-Voce trabalha em um sistema que exibe uma sequencia de tarefas encadeadas.
-Cada tarefa aponta para a proxima tarefa.
+You work on a system that shows a chain of tasks.
+Each task points to the next task.
 
-Dada a cabeca de uma linked list, reverta a ordem dos nodes sem criar uma nova
-lista. A reversao deve ser feita in-place, alterando apenas os ponteiros next.
+Given the head of a linked list, reverse the order of the nodes without
+creating a new list. The reversal must be done in-place, changing only the
+next pointers.
 
-Exemplo:
+Example:
 1 -> 2 -> 3 -> 4 -> 5
 
-Resposta esperada:
+Expected answer:
 5 -> 4 -> 3 -> 2 -> 1
 
-Para resolver, usamos tres ponteiros:
+To solve this, we use three pointers:
 
-previous guarda o node anterior ja revertido.
-current aponta para o node que esta sendo processado.
-nextNode guarda temporariamente o proximo node original.
+previous stores the previous node that is already reversed.
+current points to the node we are processing now.
+nextNode temporarily stores the next original node.
 
-Em cada passo, fazemos current->next apontar para previous.
-No final, previous sera a nova cabeca da lista.
+At each step, we make current->next point to previous.
+At the end, previous will be the new head of the list.
 */
 
 int main() {
@@ -95,15 +100,15 @@ int main() {
     third->next = fourth;
     fourth->next = fifth;
 
-    cout << "Lista original: ";
+    cout << "Original list: ";
     printList(first);
 
     ListNode* reversedHead = reverseList(first);
 
-    cout << "Lista revertida: ";
+    cout << "Reversed list: ";
     printList(reversedHead);
 
-    deleteList(reversedHead); //não obrigatório, mas é uma boa prática liberar a memória alocada.
+    deleteList(reversedHead); // Not required here, but it is good practice to free allocated memory.
 
     return 0;
 }

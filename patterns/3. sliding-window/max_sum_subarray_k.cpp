@@ -4,19 +4,20 @@
 using namespace std;
 
 // ** Commands ** //
-//cout = saída no terminal
-//<< = envia algo para o cout
-//endl = pula para a próxima linha
+// cout = prints text or values in the terminal.
+// << = sends data to cout.
+// endl = moves the output to the next line.
+
 
 vector<int> maxRevenueInKDays(const vector<int>& revenues, int k) {
-    //validação para garantir que k seja um valor válido, ou seja, maior que zero e menor ou igual ao tamanho do array de receitas.
+    // Validation to make sure k is valid: greater than zero and not bigger than the revenues array.
     if (k <= 0 || k > static_cast<int>(revenues.size())) {
         return {0, 0, 0};
     }
 
     int windowSum = 0;
 
-    // Primeiro montamos a janela inicial com os primeiros k dias.
+    // First, we build the initial window with the first k days.
     for (int i = 0; i < k; ++i) {
         windowSum += revenues[i];
     }
@@ -25,7 +26,7 @@ vector<int> maxRevenueInKDays(const vector<int>& revenues, int k) {
     int startDay = 1;
     int endDay = k;
 
-    // Agora a janela desliza: entra o dia atual e sai o dia que ficou para tras.
+    // Now the window slides: the current day enters and the old day leaves.
     for (int right = k; right < static_cast<int>(revenues.size()); ++right) {
         int left = right - k;
 
@@ -34,8 +35,8 @@ vector<int> maxRevenueInKDays(const vector<int>& revenues, int k) {
 
         if (windowSum > maxSum) {
             maxSum = windowSum;
-            startDay = left + 2; // A janela atual começa no dia seguinte ao que saiu.
-            endDay = right + 1; // A janela atual termina no dia que acabou de entrar.
+            startDay = left + 2; // The current window starts on the day after the one that left.
+            endDay = right + 1;  // The current window ends on the day that just entered.
         }
     }
 
@@ -43,30 +44,30 @@ vector<int> maxRevenueInKDays(const vector<int>& revenues, int k) {
 }
 
 /*
-                            *Enunciado*
-                ## Melhor Periodo de Vendas ##
+                            *Problem Statement*
+                ## Best Sales Period ##
 
-Voce trabalha em um sistema de analise de vendas. Cada posicao do array revenues
-representa o total vendido em um dia.
+You work on a sales analysis system. Each position in the revenues array
+represents the total sold in one day.
 
-Dado um array revenues e um numero k, encontre a maior receita total obtida em
-qualquer periodo de k dias consecutivos.
+Given an array revenues and a number k, find the highest total revenue in any
+period of k consecutive days.
 
-Exemplo:
+Example:
 revenues = {120, 80, 45, 200, 60, 30, 90}
 k = 3
 
-Janelas possiveis:
+Possible windows:
 120 + 80 + 45 = 245
 80 + 45 + 200 = 325
 45 + 200 + 60 = 305
 200 + 60 + 30 = 290
 60 + 30 + 90 = 180
 
-Resposta esperada: 325
+Expected answer: 325
 
-Como precisamos analisar trechos consecutivos de tamanho fixo, podemos usar
-Sliding Window para atualizar a soma em O(1) a cada deslocamento da janela.
+Because we need to analyze consecutive ranges with a fixed size, we can use
+Sliding Window to update the sum in O(1) each time the window moves.
 */
 
 int main() {
@@ -75,7 +76,7 @@ int main() {
 
     vector<int> bestRevenue = maxRevenueInKDays(revenues, k);
 
-    cout << "Sliding Window - Maior receita em " << k << " dias: " << bestRevenue[0] << " entre os dias " << bestRevenue[1] << " e " << bestRevenue[2] << endl;
+    cout << "Sliding Window - Highest revenue in " << k << " days: " << bestRevenue[0] << " between days " << bestRevenue[1] << " and " << bestRevenue[2] << endl;
 
     return 0;
 }

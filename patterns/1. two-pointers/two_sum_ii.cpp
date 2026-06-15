@@ -4,10 +4,13 @@
 using namespace std;
 
 // ** Commands ** //
-//cout = saída no terminal
-//<< = envia algo para o cout
-//endl = pula para a próxima linha
-//.size() - Retorna o número de elementos em um vetor ou string.
+// cout = prints text or values in the terminal.
+// << = sends data to cout.
+// endl = moves the output to the next line.
+// .size() = returns the number of elements in a vector or string.
+
+// ** Dictionary ** //
+// sorted - arranged in increasing order. | "Ordenado"
 
 vector<int> twoSum(vector<int>& numbers, int target) {
     int left = 0;
@@ -17,14 +20,14 @@ vector<int> twoSum(vector<int>& numbers, int target) {
         int sum = numbers[left] + numbers[right];
 
         if (sum == target) {
-            return {left + 1, right + 1}; // LeetCode usa indice comecando em 1.
+            return {left + 1, right + 1}; // LeetCode uses 1-based indexes.
         }
 
-        // Como o array esta ordenado, soma pequena demais move o ponteiro esquerdo.
+        // Because the array is sorted, a small sum moves the left pointer.
         if (sum < target) {
             ++left;
         } else {
-            // Soma grande demais move o ponteiro direito.
+            // A large sum moves the right pointer.
             --right;
         }
     }
@@ -33,28 +36,28 @@ vector<int> twoSum(vector<int>& numbers, int target) {
 }
 
 /*
-                            *Enunciado*
-                ## Encontrar Duas Compras com Valor Exato ##
+                            *Problem Statement*
+                ## Find Two Purchases With Exact Value ##
 
-Voce trabalha em um sistema de checkout. O sistema recebe uma lista de precos
-ordenada em ordem crescente e um valor alvo chamado target.
+You work on a checkout system. The system receives a list of prices sorted in
+ascending order and a target value called target.
 
-Seu objetivo e encontrar dois produtos diferentes cuja soma dos precos seja
-exatamente igual ao target.
+Your goal is to find two different products where the sum of their prices is
+exactly equal to target.
 
-Como a lista ja esta ordenada, implemente a solucao usando Two Pointers:
-um ponteiro comeca no inicio da lista e outro no final.
+Because the list is already sorted, implement the solution using Two Pointers:
+one pointer starts at the beginning of the list and the other starts at the end.
 
-Exemplo:
+Example:
 numbers = {2, 7, 11, 15}
 target = 9
 
-Resposta esperada:
+Expected answer:
 {1, 2}
 
-Observacao:
-Neste problema, os indices retornados seguem o padrao do LeetCode, ou seja,
-comecam em 1. Por isso, os indices reais 0 e 1 viram 1 e 2 na resposta.
+Note:
+In this problem, the returned indexes follow the LeetCode standard, so they
+start at 1. Because of that, real indexes 0 and 1 become 1 and 2 in the answer.
 */
 
 int main() {
@@ -64,7 +67,7 @@ int main() {
     vector<int> result = twoSum(numbers, target);
 
     cout << "Two Sum II: ";
-    for (int index : result) { //foreach do c++
+    for (int index : result) { // C++ foreach.
         cout << index << " ";
     }
     cout << endl;

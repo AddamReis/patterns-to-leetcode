@@ -4,24 +4,30 @@
 using namespace std;
 
 // ** Commands ** //
-//cout = saída no terminal
-//<< = envia algo para o cout
-//endl = pula para a próxima linha
-//.size() - Retorna o número de elementos em um vetor ou string.
-//.empty() - Verifica se um vetor ou string está vazio.
+// cout = prints text or values in the terminal.
+// << = sends data to cout.
+// endl = moves the output to the next line.
+// .size() = returns the number of elements in a vector or string.
+// .empty() = checks if a vector or string is empty.
+
+// ** Dictionary ** //
+//arranged - placed in a specific order.
+//sorted - arranged in increasing order (order by). | "Ordenado"
+//pointer tracks - a variable that keeps the position of a specific value in the array.
+//unique - exclusive, not repeated.
 
 int removeDuplicates(vector<int>& nums) {
     if (nums.empty()) {
         return 0;
     }
 
-    // uniqueIndex guarda a posicao do ultimo valor unico encontrado.
+    // uniqueIndex stores the position of the last unique value found.
     int uniqueIndex = 0;
 
     for (int current = 1; current < static_cast<int>(nums.size()); ++current) {
         if (nums[current] != nums[uniqueIndex]) {
             ++uniqueIndex;
-            // Move o novo valor unico para a proxima posicao valida do array.
+            // Move the new unique value to the next valid position in the array.
             nums[uniqueIndex] = nums[current];
         }
     }
@@ -30,28 +36,29 @@ int removeDuplicates(vector<int>& nums) {
 }
 
 /*
-                            *Enunciado*
-                ## Remover Duplicatas de uma Lista Ordenada ##
+                            *Problem Statement*
+                ## Remove Duplicates From a Sorted List ##
 
-Voce trabalha em um sistema que recebe uma lista de IDs de clientes ja ordenada.
-Por causa de importacoes duplicadas, o mesmo ID pode aparecer varias vezes.
+You work on a system that receives a sorted list of customer IDs.
+Because of duplicated imports, the same ID can appear many times.
 
-Seu objetivo e remover as duplicatas in-place, mantendo apenas uma ocorrencia
-de cada ID e preservando a ordem original.
+Your goal is to remove the duplicates in-place, keeping only one occurrence
+of each ID and preserving the original order.
 
-A funcao deve retornar o novo tamanho valido do array. Os valores depois desse
-tamanho nao importam.
+The function must return the new valid size of the array. The values after
+this size do not matter.
 
-Como o array esta ordenado, implemente a solucao usando Two Pointers:
-um ponteiro acompanha a posicao do ultimo valor unico e outro percorre o array.
+Because the array is sorted, implement the solution using Two Pointers:
+one pointer tracks the position of the last unique value and the other scans
+the array.
 
-Exemplo:
+Example:
 nums = {1, 1, 2, 2, 3, 4, 4, 5}
 
-Depois da remocao:
+After removal:
 nums = {1, 2, 3, 4, 5, ...}
 
-Resposta esperada:
+Expected answer:
 5
 */
 
@@ -59,8 +66,8 @@ int main() {
     vector<int> nums = {1, 1, 2, 2, 3, 4, 4, 5};
     int newLength = removeDuplicates(nums);
 
-    cout << "Remove Duplicates - Novo comprimento: " << newLength << endl;
-    cout << "Array apos remocao: ";
+    cout << "Remove Duplicates - New length: " << newLength << endl;
+    cout << "Array after removal: ";
 
     for (int i = 0; i < newLength; ++i) {
         cout << nums[i] << " ";
